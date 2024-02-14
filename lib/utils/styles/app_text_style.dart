@@ -43,7 +43,7 @@ class AppTextStyle {
 
   static TextStyle poppinsBold = TextStyle(
   fontFamily: "Poppins",
-  fontWeight: FontWeight.w600,
+  fontWeight: FontWeight.w700,
   fontSize: 16.sp,
       color: AppColors.c_F2F2F2
   );
