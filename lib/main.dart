@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:quiz_app/screens/quiz_start_screen/quiz_start_screen.dart';
+import 'package:quiz_app/screens/splash/splash_screen.dart';
+import 'package:quiz_app/utils/colors/app_colors.dart';
 
 
 void main() {
@@ -19,11 +20,13 @@ class MyApp extends StatelessWidget {
         ScreenUtil.init(context);
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          theme: ThemeData(useMaterial3: true),
+          theme: ThemeData(
+            scaffoldBackgroundColor: AppColors.c_273032,
+              useMaterial3: true),
           home: child,
         );
       },
-      child: QuizStartScreen(),
+      child: SplashScreen(),
     );
   }
 }

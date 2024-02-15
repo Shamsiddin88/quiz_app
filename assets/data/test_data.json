@@ -1,0 +1,69 @@
+{
+  "data": [
+    {
+      "subject_name": "Matematika",
+      "level": "medium",
+      "color": "27AE60",
+      "description": "Matematika fanidan test",
+      "questions": [
+        {
+          "question_text": "1+2 nechiga teng",
+          "true_answer": "3",
+          "variant_1": "3",
+          "variant_2": "4",
+          "variant_3": "5",
+          "variant_4": "6"
+        },
+        {
+          "question_text": "2+2 nechiga teng",
+          "true_answer": "4",
+          "variant_1": "3",
+          "variant_2": "4",
+          "variant_3": "5",
+          "variant_4": "6"
+        },
+        {
+          "question_text": "3+2 nechiga teng",
+          "true_answer": "5",
+          "variant_1": "3",
+          "variant_2": "4",
+          "variant_3": "5",
+          "variant_4": "6"
+        }
+      ]
+    },
+    {
+      "subject_name": "English",
+      "level": "easy",
+      "color": "0E81B4",
+      "description": "Ingliz tili fanidan test",
+      "questions": [
+        {
+          "question_text": "My name ... Ben",
+          "true_answer": "is",
+          "variant_1": "are",
+          "variant_2": "is",
+          "variant_3": "you",
+          "variant_4": "it"
+        },
+        {
+          "question_text": "My name ... Ben",
+          "true_answer": "is",
+          "variant_1": "are",
+          "variant_2": "is",
+          "variant_3": "you",
+          "variant_4": "it"
+        },
+        {
+          "question_text": "My name ... Ben",
+          "true_answer": "is",
+          "variant_1": "are",
+          "variant_2": "is",
+          "variant_3": "you",
+          "variant_4": "it"
+        }
+
+      ]
+    }
+  ]
+}
