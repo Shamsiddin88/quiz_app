@@ -16,24 +16,57 @@ class GlobalAppbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 32.w),
-      child: Row(
-        children: [
-          InkWell(
-            customBorder: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.r)),
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Container(
-              height: 48.h,
-              width: 48.w,
-              decoration: BoxDecoration(
-                  color: AppColors.c_162023,
-                  borderRadius: BorderRadius.circular(8.r),
-                  border: Border.all(width: 1, color: AppColors.c_2F3739),
-                  boxShadow: [
+    return Row(
+      children: [
+        InkWell(
+          customBorder: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8.r)),
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Container(
+            height: 48.h,
+            width: 48.w,
+            decoration: BoxDecoration(
+                color: AppColors.c_162023,
+                borderRadius: BorderRadius.circular(8.r),
+                border: Border.all(width: 1, color: AppColors.c_2F3739),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.25),
+                    spreadRadius: 0,
+                    blurRadius: 12.r,
+                    offset: Offset(0, 5), // changes position of shadow
+                  ),
+                ]),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
+              child: SvgPicture.asset(
+                AppImages.arrowBack,
+                height: 24.h,
+              ),
+            ),
+          ),
+        ),
+        SizedBox(
+          width: 16.w,
+        ),
+        Text(
+          title,
+          style: AppTextStyle.poppinsMedium.copyWith(fontSize: 20.sp),
+        ),
+        Spacer(),
+        onTab != null
+            ? GestureDetector(
+                onTap: onTab,
+                child: Container(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 15.w, vertical: 13.h),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16.r),
+                      border: Border.all(
+                          color: AppColors.c_F2954D,
+                          width: 2), boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.25),
                       spreadRadius: 0,
@@ -41,49 +74,13 @@ class GlobalAppbar extends StatelessWidget {
                       offset: Offset(0, 5), // changes position of shadow
                     ),
                   ]),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
-                child: SvgPicture.asset(
-                  AppImages.arrowBack,
-                  height: 24.h,
+                  child: Center(
+                      child:
+                          Text(button, style: AppTextStyle.poppinsSemiBold)),
                 ),
-              ),
-            ),
-          ),
-          SizedBox(
-            width: 16.w,
-          ),
-          Text(
-            title,
-            style: AppTextStyle.poppinsMedium.copyWith(fontSize: 20.sp),
-          ),
-          Spacer(),
-          onTab != null
-              ? GestureDetector(
-                  onTap: onTab,
-                  child: Container(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 15.w, vertical: 13.h),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16.r),
-                        border: Border.all(
-                            color: AppColors.c_F2954D,
-                            width: 2), boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.25),
-                        spreadRadius: 0,
-                        blurRadius: 12.r,
-                        offset: Offset(0, 5), // changes position of shadow
-                      ),
-                    ]),
-                    child: Center(
-                        child:
-                            Text(button, style: AppTextStyle.poppinsSemiBold)),
-                  ),
-                )
-              : SizedBox(),
-        ],
-      ),
+              )
+            : SizedBox(),
+      ],
     );
   }
 }

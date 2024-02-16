@@ -22,7 +22,10 @@ class _SubjectsScreenState extends State<SubjectsScreen> {
         SizedBox(
           height: 35.h,
         ),
-        GlobalAppbar(title: "Fanni tanlang"),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 32.w),
+          child: GlobalAppbar(title: "Fanni tanlang"),
+        ),
         Expanded(
           child: ListView(
             children: [

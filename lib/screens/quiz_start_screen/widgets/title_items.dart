@@ -11,7 +11,8 @@ class TitleItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RichText(
+    return
+      RichText(
       text: TextSpan(
         children: <TextSpan>[
           TextSpan(text: title, style: AppTextStyle.poppinsRegular.copyWith(fontSize: 14.sp)),

@@ -5,6 +5,7 @@
       "level": "medium",
       "color": "27AE60",
       "description": "Matematika fanidan test",
+      "image_path": "assets/images/math.jpg",
       "questions": [
         {
           "question_text": "1+2 nechiga teng",
@@ -37,6 +38,7 @@
       "level": "easy",
       "color": "0E81B4",
       "description": "Ingliz tili fanidan test",
+      "image_path": "assets/images/english.jpg",
       "questions": [
         {
           "question_text": "My name ... Ben",
