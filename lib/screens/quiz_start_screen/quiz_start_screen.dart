@@ -23,7 +23,7 @@ class _QuizStartScreenState extends State<QuizStartScreen> {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion(
-      value: SystemUiOverlayStyle(statusBarColor: AppColors.transparent),
+      value: const SystemUiOverlayStyle(statusBarColor: AppColors.transparent),
       child: Scaffold(
         body: Column(
           children: [
@@ -32,7 +32,7 @@ class _QuizStartScreenState extends State<QuizStartScreen> {
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 32.w),
-              child: GlobalAppbar(title: "Testni boshlash"),
+              child: const GlobalAppbar(title: "Testni boshlash"),
             ),
             SizedBox(
               height: 22.h,
@@ -64,7 +64,6 @@ class _QuizStartScreenState extends State<QuizStartScreen> {
                               height: 15.h,
                             ),
                             Container(
-                              height: 220.h,
                               width: double.infinity,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(16.r),
@@ -78,18 +77,18 @@ class _QuizStartScreenState extends State<QuizStartScreen> {
                                       borderRadius: BorderRadius.circular(16.r),
                                       child: Image.asset(
                                           widget.subjectModel.imagePath,
-                                          height: 154.h)),
+                                          fit: BoxFit.cover, width: double.infinity,)),
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10, vertical: 5),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10.w, vertical: 5.h),
                                     child: TitleItem(
                                         title: "Fan: ",
                                         subtitle:
                                             widget.subjectModel.subjectName),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10, vertical: 5),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10.w, vertical: 5.h),
                                     child: TitleItem(
                                         title: "Qiyinligi: ",
                                         subtitle:
@@ -110,9 +109,8 @@ class _QuizStartScreenState extends State<QuizStartScreen> {
                             ),
                             TitleItem(
                                 title: "Ajratilgan vaqt: ",
-                                subtitle:
-                                    "${widget.subjectModel.questions.length * 3}:00 min"),
-                            SizedBox(
+                                subtitle:"${getMinutelyText(widget.subjectModel.questions.length*30)} min",),
+                              SizedBox(
                               height: 12.h,
                             ),
                             RichText(
@@ -136,7 +134,6 @@ class _QuizStartScreenState extends State<QuizStartScreen> {
                   ),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 32.w),
-                    height: 86.h,
                     width: double.infinity,
                     decoration: BoxDecoration(
                         color: AppColors.c_273032,
@@ -150,17 +147,17 @@ class _QuizStartScreenState extends State<QuizStartScreen> {
                               border: Border.all(
                                   width: 1, color: AppColors.c_F2F2F2)),
                           margin: EdgeInsets.symmetric(vertical: 20.h),
-                          padding: EdgeInsets.all(12),
+                          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
                           child: Row(
                             children: [
-                              SvgPicture.asset(AppImages.timer),
+                              SvgPicture.asset(AppImages.timer, height: 22.h,),
                               SizedBox(
                                 width: 5.w,
                               ),
                               Text(
-                                "${widget.subjectModel.questions.length * 3}:00",
+                                getMinutelyText(widget.subjectModel.questions.length*30),
                                 style: AppTextStyle.poppinsMedium
-                                    .copyWith(fontSize: 16),
+                                    .copyWith(fontSize: 16.sp),
                               ),
                             ],
                           ),
@@ -179,7 +176,7 @@ class _QuizStartScreenState extends State<QuizStartScreen> {
                           child: Container(
                             margin: EdgeInsets.symmetric(vertical: 20.h),
                             padding: EdgeInsets.symmetric(
-                                horizontal: 55.w, vertical: 12.h),
+                                horizontal: 40.w, vertical: 12.h),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(16.r),
                               color: AppColors.c_F2954D,

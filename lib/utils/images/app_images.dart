@@ -3,6 +3,7 @@ class AppImages {
   static const String wallpaper="assets/images/wallpaper.png";
   static const String english="assets/images/english.jpg";
   static const String math="assets/images/math.jpg";
+  static const String physics="assets/assets/images/physics.jpeg";
 
   //.svg
 

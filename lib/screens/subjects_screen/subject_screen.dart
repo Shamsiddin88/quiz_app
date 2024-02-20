@@ -24,7 +24,7 @@ class _SubjectsScreenState extends State<SubjectsScreen> {
         ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 32.w),
-          child: GlobalAppbar(title: "Fanni tanlang"),
+          child: const GlobalAppbar(title: "Fanni tanlang"),
         ),
         Expanded(
           child: ListView(
@@ -32,7 +32,6 @@ class _SubjectsScreenState extends State<SubjectsScreen> {
               ...List.generate(DataRepository().allSubjects.length, (index) {
                 SubjectModel subject = DataRepository().allSubjects[index];
                 return SubjectItem(
-                  time: "12:00",
                   onTap: () {
                     Navigator.push(
                         context,

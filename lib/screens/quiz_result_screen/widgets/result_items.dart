@@ -19,6 +19,7 @@ class ResultItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return
       Container(
+        width: 145.w,
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16.r),
@@ -29,7 +30,7 @@ class ResultItem extends StatelessWidget {
             color: Colors.black.withOpacity(0.25),
             spreadRadius: 0,
             blurRadius: 12.r,
-            offset: Offset(0, 5),
+            offset: const Offset(0, 5),
           ),
         ],
       ),
@@ -38,11 +39,11 @@ class ResultItem extends StatelessWidget {
         children: [
           Text(
             title,
-            style: AppTextStyle.poppinsSemiBold.copyWith(fontSize: 20),
+            style: AppTextStyle.poppinsSemiBold.copyWith(fontSize: 20.sp),
           ),
           Text(
             subTitle,
-            style: AppTextStyle.poppinsMedium.copyWith(fontSize: 13),
+            style: AppTextStyle.poppinsMedium.copyWith(fontSize: 13.sp),
           ),
         ],
       ),

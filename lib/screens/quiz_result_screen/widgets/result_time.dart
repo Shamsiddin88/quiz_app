@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../utils/colors/app_colors.dart';
-import '../../../utils/images/app_images.dart';
 import '../../../utils/styles/app_text_style.dart';
 
 class ResultTime extends StatelessWidget {
@@ -20,7 +19,9 @@ class ResultTime extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width= MediaQuery.of(context).size.width;
     return Container(
+      width: 145.w,
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16.r),
@@ -31,7 +32,7 @@ class ResultTime extends StatelessWidget {
             color: Colors.black.withOpacity(0.25),
             spreadRadius: 0,
             blurRadius: 12.r,
-            offset: Offset(0, 5),
+            offset: const Offset(0, 5),
           ),
         ],
       ),
@@ -51,7 +52,7 @@ class ResultTime extends StatelessWidget {
           ),
           Text(
             subtitle,
-            style: AppTextStyle.poppinsMedium.copyWith(fontSize: 12),
+            style: AppTextStyle.poppinsMedium.copyWith(fontSize: 12.sp),
           ),
         ],
       ),

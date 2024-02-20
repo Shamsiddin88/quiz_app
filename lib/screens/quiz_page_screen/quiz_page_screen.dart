@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 import 'package:quiz_app/screens/quiz_page_screen/widgets/quiz_screen_bottom.dart';
 import 'package:quiz_app/screens/quiz_page_screen/widgets/variant_item_view.dart';
+import '../../data/answer_report.dart';
 import '../../models/quiz_model.dart';
 import '../../models/subject_model.dart';
 import '../../utils/colors/app_colors.dart';
@@ -23,26 +23,42 @@ class QuizPageScreen extends StatefulWidget {
 }
 
 class _QuizPageScreenState extends State<QuizPageScreen> {
+  int count = 0;
+
   List<QuizModel> questions = [];
 
   int activeIndex = 0;
-  int selectedIndex = 0;
+  int selectedIndex = 0; //selectedIndex oladigan qiymatlari: 0,1,2,3,4
 
   Map<int, int> selectedAnswers = {};
+
+  Future<void> _timerLogic() async {
+    for (int i = questions.length * 10; i > 0; i--) {
+      setState(() {
+        count = i;
+      });
+      await Future.delayed(const Duration(seconds: 1));
+    }
+
+    _navigateToResultScreen();
+  }
 
   @override
   void initState() {
     questions = widget.subjectModel.questions;
+
     for (int i = 0; i < questions.length; i++) {
       selectedAnswers[i] = 0;
     }
+
+    _timerLogic();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion(
-      value: SystemUiOverlayStyle(statusBarColor: AppColors.transparent),
+      value: const SystemUiOverlayStyle(statusBarColor: AppColors.transparent),
       child: Scaffold(
         body: Column(
           children: [
@@ -53,42 +69,24 @@ class _QuizPageScreenState extends State<QuizPageScreen> {
               padding: EdgeInsets.symmetric(horizontal: 32.w),
               child: GlobalAppbar(
                 title: widget.subjectModel.subjectName,
-                onTab: () {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              QuizResultScreen(
-                                selections:selectedAnswers,
-                                subjectModel:widget.subjectModel
-                              )));
-                },
+                onTab:_navigateToResultScreen,
                 button: "Submit",
               ),
             ),
             SizedBox(
               height: 32.h,
             ),
-            SizedBox(
-              height: 7.h,
-            ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 32.w),
               child: Row(
                 children: [
-                  Text(
-                    "Maths / Real Numbers",
-                    style: AppTextStyle.poppinsRegular.copyWith(
-                        color: AppColors.c_F2F2F2.withOpacity(0.5),
-                        fontSize: 16),
-                  ),
-                  Spacer(),
-                  SvgPicture.asset(AppImages.timer),
+                  const Spacer(),
+                  SvgPicture.asset(AppImages.timer, height: 22.h,),
                   SizedBox(
                     width: 5.w,
                   ),
                   Text(
-                    "07:28",
+                    getMinutelyText(count),
                     style: AppTextStyle.poppinsMedium,
                   )
                 ],
@@ -100,7 +98,7 @@ class _QuizPageScreenState extends State<QuizPageScreen> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 32.w),
               child: LinearProgressIndicator(
-                value: 0.5,
+                value:  count / (questions.length * 10),
                 minHeight: 12.h,
                 borderRadius: BorderRadius.circular(8.r),
                 color: AppColors.c_F2954D,
@@ -202,6 +200,8 @@ class _QuizPageScreenState extends State<QuizPageScreen> {
                               selectedIndex = 0;
                               activeIndex++;
                             }
+                            else _navigateToResultScreen();
+
                             setState(() {
 
                             });
@@ -212,94 +212,41 @@ class _QuizPageScreenState extends State<QuizPageScreen> {
                   ),
                 ))
 
-            // Container(
-            //   padding: EdgeInsets.only(top: 40.h, left: 32.w, right: 32.w),
-            //   width: double.infinity,
-            //   height: 420.h,
-            //   decoration: BoxDecoration(
-            //       border: Border.all(color: AppColors.c_2F3739, width: 1),
-            //       color: AppColors.c_162023,
-            //       borderRadius: BorderRadius.only(
-            //           topLeft: Radius.circular(40.r),
-            //           topRight: Radius.circular(40.r))),
-            //   child: Expanded(
-            //     child: PageView(
-            //       //    physics: const NeverScrollableScrollPhysics(),
-            //       scrollDirection: Axis.horizontal,
-            //       children: [
-            //         ...List.generate(
-            //           widget.subjectModel.questions.length,
-            //           (index) => Column(
-            //             crossAxisAlignment: CrossAxisAlignment.start,
-            //             children: [
-            //               RichText(
-            //                 text: TextSpan(
-            //                   children: <TextSpan>[
-            //                     TextSpan(text: "Q ", style: AppTextStyle.poppinsSemiBold.copyWith(fontSize: 20.sp)),
-            //                     TextSpan(text: "${(widget.subjectModel.questions.length - (widget.subjectModel.questions.length - (index + 1))).toString()}/", style: AppTextStyle.poppinsSemiBold.copyWith(fontSize: 20.sp)),
-            //                     TextSpan(text: widget.subjectModel.questions.length.toString(), style: AppTextStyle.poppinsRegular.copyWith(fontSize: 14.sp))
-            //                   ],
-            //                 ),
-            //               ),
-            //              SizedBox(height: 12.h,),
-            //              Text(
-            //                 widget.subjectModel.questions[index].questionText
-            //                     .toString(),
-            //                 style: AppTextStyle.poppinsSemiBold
-            //                     .copyWith(fontSize: 17),
-            //               ),
-            //               SizedBox(height: 24.h,),
-            //
-            //               Material(
-            //                 color: AppColors.transparent,
-            //                 child: Ink(
-            //                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(16.sp), color: AppColors.c_273032,),
-            //
-            //                   child: InkWell(
-            //                     borderRadius: BorderRadius.circular(16.sp),
-            //                     onTap: (){},
-            //                     child: Container(
-            //                       width: double.infinity,
-            //                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(16.sp)),
-            //                       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 13.h),
-            //                       child: Row(
-            //                         children: [
-            //                           Text("A.", style: AppTextStyle.poppinsBold.copyWith(fontSize: 14.sp),),
-            //                           SizedBox(width: 12.w,),
-            //                           Text(
-            //                             widget.subjectModel.questions[index].variant1
-            //                                 .toString(),
-            //                             style: AppTextStyle.poppinsMedium
-            //                                 .copyWith(fontSize: 14),
-            //                           ),
-            //                         ],
-            //                       ),
-            //                     ),
-            //                   ),
-            //                 ),
-            //               ),
-            //               Text(
-            //                 widget.subjectModel.questions[index].variant2
-            //                     .toString(),
-            //                 style: AppTextStyle.poppinsSemiBold
-            //                     .copyWith(fontSize: 17),
-            //               ),
-            //               Text(
-            //                 widget.subjectModel.questions[index].variant3
-            //                     .toString(),
-            //                 style: AppTextStyle.poppinsSemiBold
-            //                     .copyWith(fontSize: 17),
-            //               ),
-            //             ],
-            //           ),
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
           ],
         ),
       ),
     );
   }
+  void _navigateToResultScreen() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return QuizResultScreen(
+            answerReport: AnswerReport(
+              subjectModel: widget.subjectModel,
+              selectedAnswers: selectedAnswers,
+              spentTime: questions.length * 10 - count,
+            ),
+          );
+        },
+      ),
+    );
+  }
+
 }
+
+
+
+String getMinutelyText(int timeInSeconds) {
+  //"01:10"
+  //1 hour > seconds > 0
+  int min = timeInSeconds ~/ 60;
+  int sec = timeInSeconds % 60;
+
+  String minute = min.toString().length <= 1 ? "0$min" : "$min";
+  String second = sec.toString().length <= 1 ? "0$sec" : "$sec";
+
+  return "$minute : $second";
+}
+

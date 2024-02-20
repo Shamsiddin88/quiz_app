@@ -36,7 +36,7 @@ class GlobalAppbar extends StatelessWidget {
                     color: Colors.black.withOpacity(0.25),
                     spreadRadius: 0,
                     blurRadius: 12.r,
-                    offset: Offset(0, 5), // changes position of shadow
+                    offset: const Offset(0, 5), // changes position of shadow
                   ),
                 ]),
             child: Padding(
@@ -55,7 +55,7 @@ class GlobalAppbar extends StatelessWidget {
           title,
           style: AppTextStyle.poppinsMedium.copyWith(fontSize: 20.sp),
         ),
-        Spacer(),
+        const Spacer(),
         onTab != null
             ? GestureDetector(
                 onTap: onTab,
@@ -71,7 +71,7 @@ class GlobalAppbar extends StatelessWidget {
                       color: Colors.black.withOpacity(0.25),
                       spreadRadius: 0,
                       blurRadius: 12.r,
-                      offset: Offset(0, 5), // changes position of shadow
+                      offset: const Offset(0, 5), // changes position of shadow
                     ),
                   ]),
                   child: Center(
@@ -79,7 +79,7 @@ class GlobalAppbar extends StatelessWidget {
                           Text(button, style: AppTextStyle.poppinsSemiBold)),
                 ),
               )
-            : SizedBox(),
+            : const SizedBox(),
       ],
     );
   }

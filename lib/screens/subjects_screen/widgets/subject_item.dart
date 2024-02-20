@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quiz_app/models/subject_model.dart';
-
-import '../../../utils/colors/app_colors.dart';
 import '../../../utils/styles/app_text_style.dart';
 
 class SubjectItem extends StatelessWidget {
   const SubjectItem(
       {super.key,
-      required this.time,
       required this.onTap,
       required this.subjectModel});
 
-  final String time;
   final VoidCallback onTap;
   final SubjectModel subjectModel;
 
@@ -34,15 +30,14 @@ class SubjectItem extends StatelessWidget {
               Row(
                 children: [
                   Text(subjectModel.subjectName, style: AppTextStyle.poppinsSemiBold),
-                  Spacer(),
-                  Text(time, style: AppTextStyle.poppinsSemiBold),
+                  const Spacer(),
                 ],
               ),
               SizedBox(height: 30.h,),
               Row(
                 children: [
                   Text(subjectModel.level.name, style: AppTextStyle.poppinsSemiBold),
-                  Spacer(),
+                  const Spacer(),
                   Text(subjectModel.questions.length.toString(), style: AppTextStyle.poppinsSemiBold),
                 ],
               ),

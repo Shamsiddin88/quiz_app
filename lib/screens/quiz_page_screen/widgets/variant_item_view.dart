@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../utils/colors/app_colors.dart';
 import '../../../utils/styles/app_text_style.dart';
 
@@ -34,9 +33,11 @@ class VariantItemView extends StatelessWidget {
               Text(
                 caption, style: AppTextStyle.poppinsBold.copyWith(fontSize: 14.sp),),
               SizedBox(width: 12.w,),
-              Text(variantText,
-                style: AppTextStyle.poppinsMedium
-                    .copyWith(fontSize: 14),
+              Expanded(
+                child: Text(variantText,
+                  style: AppTextStyle.poppinsMedium
+                      .copyWith(fontSize: 14.sp),
+                ),
               ),
             ],
           ),
