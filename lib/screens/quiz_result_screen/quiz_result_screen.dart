@@ -143,7 +143,7 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
                     subTitle: "To'g'ri javoblar",
                     color: AppColors.c_27AE60),
                 ResultItem(
-                    title: widget.answerReport.trueAnswersCount.toString(),
+                    title: widget.answerReport.falseAnswersCount.toString(),
                     subTitle: "Xato javoblar",
                     color: AppColors.c_EB5757)
               ],

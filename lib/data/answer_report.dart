@@ -62,12 +62,12 @@ class AnswerReport {
           onlySelectedAnswersCount++;
         }
       }
-      averageTimeForEachAnswer = spentTime ~/ onlySelectedAnswersCount;
+      averageTimeForEachAnswer!=0?  spentTime ~/ onlySelectedAnswersCount:1;
     }
 
-    totalTime = subjectModel.questions.length * 10;
+    totalTime = subjectModel.questions.length * 30;
 
-    truePercentage = (trueAnswersCount / subjectModel.questions.length);
+    truePercentage=(trueAnswersCount / subjectModel.questions.length);
 
     totalQuestionsCount = subjectModel.questions.length;
   }
